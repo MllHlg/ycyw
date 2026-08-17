@@ -1,0 +1,45 @@
+<div class="chat-container">
+  
+  <div class="sidebar">
+    <h3>Mes Demandes</h3>
+    
+    <button class="btn-new-session" (click)="createNewSession()">
+      + Nouvelle demande
+    </button>
+    
+    @for (session of sessions; track session.id) {
+      <div class="session-item" 
+           [class.active]="session.id === activeSessionId"
+           (click)="selectSession(session.id)">
+        Session #{{ session.id.substring(0, 5) }}...
+      </div>
+    }
+  </div>
+
+  <div class="main-chat">
+    @if (!activeSessionId) {
+      <h3>Sélectionnez une session</h3>
+    } @else {
+      <h3>Conversation en cours</h3>
+
+      <div class="chat-box">
+        @for (msg of messages; track msg.sentAt) {
+          <div class="message-wrapper" [class.user]="msg.senderId === userId" [class.agent]="msg.senderId !== userId">
+            <span class="message-time">{{ msg.sentAt | date:'shortTime' }}</span>
+            <div class="message-bubble" [class.user]="msg.senderId === userId" [class.agent]="msg.senderId !== userId">
+              {{ msg.content }}
+            </div>
+          </div>
+        } @empty {
+          <p class="empty-chat">Aucun message dans cette conversation. Soyez le premier à écrire !</p>
+        }
+      </div>
+
+      <div class="chat-input-area">
+        <input type="text" [(ngModel)]="newMessage" (keyup.enter)="send()" placeholder="Écrivez votre message...">
+        <button (click)="send()">Envoyer</button>
+      </div>
+    }
+  </div>
+
+</div>
