@@ -18,6 +18,9 @@ export class ChatComponent implements OnInit, OnDestroy {
   private messageSubscription!: Subscription;
 
   userId = '123e4567-e89b-12d3-a456-426614174001';
+  agentId = '38b71af4-b575-4791-b514-7bf21ec4f863';
+
+  currentUserId = this.userId;
 
   constructor(private chatService: ChatService,
     private cdr: ChangeDetectorRef) { }
@@ -31,7 +34,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   loadSessions(): void {
-    this.chatService.getSessions(this.userId).subscribe({
+    this.chatService.getSessions(this.currentUserId).subscribe({
       next: (data) => {
         this.sessions = data;
         this.cdr.detectChanges();
@@ -89,7 +92,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
     const request = {
       sessionId: this.activeSessionId,
-      senderId: this.userId,
+      senderId: this.currentUserId,
       content: this.newMessage
     };
 
