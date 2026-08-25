@@ -14,7 +14,7 @@ Il comprend :
 Pour exécuter ce projet localement, vous devez avoir installé sur votre machine :
 * [Docker](https://docs.docker.com/get-docker/) et [Docker Compose](https://docs.docker.com/compose/install/)
 * [Java 21](https://adoptium.net/) et [Maven](https://maven.apache.org/) (pour le Back-end)
-* [Node.js](https://nodejs.org/) (version 18+) et [Angular CLI](https://angular.io/cli) (pour le Front-end)
+* [Node.js](https://nodejs.org/) (version 18+) et [Angular CLI 21](https://angular.io/cli) (pour le Front-end)
 
 
 ## Configuration des variables d'environnement
